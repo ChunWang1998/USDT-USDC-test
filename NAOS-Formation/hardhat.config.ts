@@ -32,6 +32,11 @@ export default {
       gas: 20000000,
     },
     hardhat: {
+     
+      forking: {
+        url: "https://eth-mainnet.alchemyapi.io/v2/tRdD8WTztpTMvB8RL2nOHK_9Td_TVF99",
+        blockNumber: 11095000//???
+      },
       chainId: 1337,
       allowUnlimitedContractSize: false,
       blockGasLimit: 25000000

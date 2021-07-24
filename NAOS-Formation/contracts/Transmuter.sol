@@ -34,7 +34,7 @@ contract Transmuter is Context {
 
     ///@dev values needed to calculate the distribution of base asset in proportion for nTokens staked
     //uint256 public pointMultiplier = 10e18;
-    uint256 public pointMultiplier = 10e6;
+    uint256 public pointMultiplier = 10e6;//in original formation test code, it doesn't matter
 
 
     uint256 public totalDividendPoints;
