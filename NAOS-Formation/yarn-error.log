@@ -1,0 +1,82 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\CHUN\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js
+
+PATH: 
+  C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Python39\Scripts\;C:\Python39\;C:\Program Files\Python37\Scripts\;C:\Program Files\Python37\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Users\CHUN\AppData\Roaming\Python\Python37\Scripts\;C:\ProgramData\chocolatey\bin;c:\\program files\\python37\\Lib\\venv\\scripts\\nt\\python.exe;c:\\python39\\lib\\site-packages\\pip-20.2.3.dist-info\\entry_points.txt;c:\\python39\\Scripts\\celery.exe.deleteme;c:\\python39\\Scripts\\celery.exe;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\MinGW\bin;C:\Program Files\LLVM\bin;C:\Program Files\Java\jdk1.8.0_281\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Vim\vim81;C:\Program Files\Go\bin;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;"C:\MinGW\bin;";C:\Users\CHUN\anaconda3;C:\Users\CHUN\anaconda3\Library\mingw-w64\bin;C:\Users\CHUN\anaconda3\Library\usr\bin;C:\Users\CHUN\anaconda3\Library\bin;C:\Users\CHUN\anaconda3\Scripts;C:\Program Files\Python37\Scripts\;C:\Program Files\Python37\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Users\CHUN\AppData\Roaming\Python\Python37\Scripts\;C:\Users\CHUN\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\PyCharm 2020.2.3\bin;C:\Users\jetbrains\AppData\Roaming\Python\Python37\Scripts;c:\\program files\\python37\\Lib\\venv\\scripts\\nt\\python.exe;c:\\python39\\lib\\site-packages\\pip-20.2.3.dist-info\\entry_points.txt;c:\\python39\\Scripts\\celery.exe;c:\\python39\\Scripts\\celery.exe.deleteme;C:\Users\CHUN\nvm;C:\Program Files\nodejs;C:\Users\CHUN\AppData\Roaming\npm;C:\Users\CHUN\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\CHUN\AppData\Local\Microsoft\WindowsApps;C:\Users\CHUN\go\bin
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  14.15.4
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: getaddrinfo ENOTFOUND registry.yarnpkg.com
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:67:26)
+
+npm manifest: 
+  {
+    "name": "formation",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "GPL-3.0",
+    "devDependencies": {
+      "@nomiclabs/hardhat-ethers": "^2.0.0",
+      "@nomiclabs/hardhat-etherscan": "^2.0.1",
+      "@nomiclabs/hardhat-waffle": "^2.0.0",
+      "@nomiclabs/hardhat-web3": "^2.0.0",
+      "@openzeppelin/contracts": "^3.2.0",
+      "@typechain/ethers-v5": "^1.0.0",
+      "@typechain/truffle-v5": "^2.0.2",
+      "@types/chai": "^4.2.12",
+      "@types/chai-subset": "^1.3.3",
+      "@types/mocha": "^8.0.2",
+      "@types/node": "^14.0.27",
+      "@typescript-eslint/eslint-plugin": "^4.4.1",
+      "@typescript-eslint/parser": "^4.4.1",
+      "@uniswap/v2-core": "^1.0.1",
+      "@uniswap/v2-periphery": "^1.1.0-beta.0",
+      "chai": "^4.2.0",
+      "chai-subset": "^1.6.0",
+      "eslint": "^7.11.0",
+      "eslint-plugin-prettier": "^3.1.4",
+      "ethereum-waffle": "^3.1.0",
+      "ethers": "^5.0.0",
+      "hardhat": "^2.0.3",
+      "hardhat-contract-sizer": "^2.0.2",
+      "hardhat-deploy": "^0.7.0-beta.30",
+      "hardhat-gas-reporter": "^1.0.1",
+      "hardhat-typechain": "^0.3.3",
+      "moment": "^2.29.1",
+      "prettier": "^2.1.2",
+      "prettier-plugin-solidity": "^1.0.0-alpha.59",
+      "solhint": "^3.2.2",
+      "solhint-plugin-prettier": "^0.0.5",
+      "solidity-coverage": "^0.7.12",
+      "ts-node": "^8.10.2",
+      "typechain": "^2.0.0",
+      "typechain-target-ethers": "^1.0.4",
+      "typescript": "^3.9.7",
+      "web3": "^1.3.3"
+    },
+    "scripts": {
+      "clean": "npx hardhat clean",
+      "compile": "npx hardhat compile",
+      "coverage": "npx hardhat coverage",
+      "test": "npx hardhat test"
+    },
+    "dependencies": {
+      "@studydefi/money-legos": "^2.4.1",
+      "dotenv": "^8.2.0",
+      "mocha": "^8.2.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
