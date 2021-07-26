@@ -79,8 +79,7 @@ contract YearnVaultMock is  ERC20 {
   }
 
   function pricePerShare() external view returns (uint256) {
-    //return balance().mul(1e18).div(totalSupply());
-    return balance().mul(1e6).div(totalSupply());
+    return balance().mul(1e18).div(totalSupply());
   }// changed to v2
 
   /// @dev This is not part of the vault contract and is meant for quick debugging contracts to have control over
