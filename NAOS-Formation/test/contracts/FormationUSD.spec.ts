@@ -64,7 +64,7 @@ describe("Formation", () => {
       token = (await ERC20MockFactory.connect(deployer).deploy(
         "Mock USD",
         "USD",
-        6
+        18
       )) as Erc20Mock;
 
       nUsd = (await NUSDFactory.connect(deployer).deploy()) as NToken;
@@ -173,7 +173,7 @@ describe("Formation", () => {
       token = (await ERC20MockFactory.connect(deployer).deploy(
         "Mock USD",
         "USD",
-        6
+        18
       )) as Erc20Mock;
 
       nUsd = (await NUSDFactory.connect(deployer).deploy()) as NToken;
@@ -369,7 +369,7 @@ describe("Formation", () => {
       token = (await ERC20MockFactory.connect(deployer).deploy(
         "Mock USD",
         "uSD",
-        6
+        18
       )) as Erc20Mock;
 
       nUsd = (await NUSDFactory.connect(deployer).deploy()) as NToken;
@@ -504,6 +504,8 @@ describe("Formation", () => {
           await formation.flush();
           // need at least one other deposit in the vault to not get underflow errors
           await vaultMock.connect(deployer).deposit(parseEther("100"));
+          //console.log( await vaultMock.connect(deployer).totalSupply());//5100
+          //console.log(await adapter.decimals());//18
         });
 
         it("reverts when not an emergency, not governance, and user does not have permission to recall funds from active vault", async () => {

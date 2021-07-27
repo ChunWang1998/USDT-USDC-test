@@ -34,7 +34,8 @@ contract YearnVaultAdapterUSD is IVaultAdapter {
     vault = _vault;
     admin = _admin;
     updateApproval();
-    decimals = _vault.decimals();
+    //decimals = _vault.decimals();//!!!6 or 18
+    decimals = 6;
   }
 
   /// @dev A modifier which reverts if the caller is not the admin.
