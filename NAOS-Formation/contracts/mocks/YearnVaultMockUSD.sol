@@ -9,9 +9,9 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 
 import "../interfaces/IYearnController.sol";
-import "../interfaces/IYearnVault.sol";
+import "../interfaces/IYearnVaultUSD.sol";
 
-contract YearnVaultMock is  ERC20 {
+contract YearnVaultMockUSD is  ERC20 {
   using SafeERC20 for IDetailedERC20;
   using SafeMath for uint256;
 

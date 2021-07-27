@@ -10,8 +10,8 @@ import { NToken } from "../../types/NToken";
 import { Erc20Mock } from "../../types/Erc20Mock";
 import { MAXIMUM_U256, ZERO_ADDRESS, DEFAULT_FLUSH_ACTIVATOR } from "../utils/helpers";
 import { VaultAdapterMock } from "../../types/VaultAdapterMock";
-import { YearnVaultAdapter } from "../../types/YearnVaultAdapter";
-import { YearnVaultMock } from "../../types/YearnVaultMock";
+import { YearnVaultAdapterUsd } from "../../types/YearnVaultAdapterUsd";
+import { YearnVaultMockUsd } from "../../types/YearnVaultMockUsd";
 import { YearnControllerMock } from "../../types/YearnControllerMock";
 import { min } from "moment";
 const {parseEther, formatEther} = utils;
@@ -26,8 +26,8 @@ let NUSDFactory: ContractFactory;
 let ERC20MockFactory: ContractFactory;
 let VaultAdapterMockFactory: ContractFactory;
 let TransmuterFactory: ContractFactory;
-let YearnVaultAdapterFactory: ContractFactory;
-let YearnVaultMockFactory: ContractFactory;
+let YearnVaultAdapterUsdFactory: ContractFactory;
+let YearnVaultMockUsdFactory: ContractFactory;
 let YearnControllerMockFactory: ContractFactory;
 
 describe("Formation", () => {
@@ -41,8 +41,8 @@ describe("Formation", () => {
     VaultAdapterMockFactory = await ethers.getContractFactory(
       "VaultAdapterMock"
     );
-    YearnVaultAdapterFactory = await ethers.getContractFactory("YearnVaultAdapter");
-    YearnVaultMockFactory = await ethers.getContractFactory("YearnVaultMock");
+    YearnVaultAdapterUsdFactory = await ethers.getContractFactory("YearnVaultAdapterUSD");
+    YearnVaultMockUsdFactory = await ethers.getContractFactory("YearnVaultMockUSD");
     YearnControllerMockFactory = await ethers.getContractFactory("YearnControllerMock");
   });
 
@@ -171,9 +171,9 @@ describe("Formation", () => {
       ] = signers;
 
       token = (await ERC20MockFactory.connect(deployer).deploy(
-        "Mock DAI",
-        "DAI",
-        18
+        "Mock USD",
+        "USD",
+        6
       )) as Erc20Mock;
 
       nUsd = (await NUSDFactory.connect(deployer).deploy()) as NToken;
@@ -367,9 +367,9 @@ describe("Formation", () => {
       ] = signers;
 
       token = (await ERC20MockFactory.connect(deployer).deploy(
-        "Mock DAI",
-        "DAI",
-        18
+        "Mock USD",
+        "uSD",
+        6
       )) as Erc20Mock;
 
       nUsd = (await NUSDFactory.connect(deployer).deploy()) as NToken;
@@ -480,9 +480,9 @@ describe("Formation", () => {
 
     describe("recall funds", () => {
       context("from the active vault", () => {
-        let adapter: YearnVaultAdapter;
+        let adapter: YearnVaultAdapterUsd;
         let controllerMock: YearnControllerMock;
-        let vaultMock: YearnVaultMock;
+        let vaultMock: YearnVaultMockUsd;
         let depositAmt = parseEther("5000");
         let mintAmt = parseEther("1000");
         let recallAmt = parseEther("500");
@@ -491,12 +491,12 @@ describe("Formation", () => {
           controllerMock = await YearnControllerMockFactory
             .connect(deployer)
             .deploy() as YearnControllerMock;
-          vaultMock = await YearnVaultMockFactory
+          vaultMock = await YearnVaultMockUsdFactory
             .connect(deployer)
-            .deploy(token.address, controllerMock.address) as YearnVaultMock;
-          adapter = await YearnVaultAdapterFactory
+            .deploy(token.address, controllerMock.address) as YearnVaultMockUsd;
+          adapter = await YearnVaultAdapterUsdFactory
             .connect(deployer)
-            .deploy(vaultMock.address, formation.address) as YearnVaultAdapter;
+            .deploy(vaultMock.address, formation.address) as YearnVaultAdapterUsd;
           await token.mint(await deployer.getAddress(), parseEther("10000"));
           await token.approve(vaultMock.address, parseEther("10000"));
           await formation.connect(governance).initialize(adapter.address)
@@ -511,7 +511,7 @@ describe("Formation", () => {
             .revertedWith("Formation: not an emergency, not governance, and user does not have permission to recall funds from active vault")
         });
 
-        it("governance can recall some of the funds", async () => {//err1
+        it("governance can recall some of the funds", async () => {
           let beforeBal = await token.connect(governance).balanceOf(formation.address);
           await formation.connect(governance).recall(0, recallAmt);
           let afterBal = await token.connect(governance).balanceOf(formation.address);
@@ -519,19 +519,19 @@ describe("Formation", () => {
           expect(afterBal).equal(recallAmt);
         });
 
-        it("governance can recall all of the funds", async () => {//err2
+        it("governance can recall all of the funds", async () => {
           await formation.connect(governance).recallAll(0);
           expect(await token.connect(governance).balanceOf(formation.address)).equal(depositAmt);
         });
 
         describe("in an emergency", async () => {
-          it("anyone can recall funds", async () => {//err3
+          it("anyone can recall funds", async () => {
             await formation.connect(governance).setEmergencyExit(true);
             await formation.connect(minter).recallAll(0);
             expect(await token.connect(governance).balanceOf(formation.address)).equal(depositAmt);
           });
 
-          it("after some usage", async () => {//err4
+          it("after some usage", async () => {
             await formation.connect(minter).deposit(mintAmt);
             await formation.connect(governance).flush();
             await token.mint(adapter.address, parseEther("500"));
@@ -993,4 +993,3 @@ describe("Formation", () => {
     })
   });
 });
-
