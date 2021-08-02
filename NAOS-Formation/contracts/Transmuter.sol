@@ -19,9 +19,9 @@ contract Transmuter is Context {
     address public NToken;
     address public Token;
 
-    mapping(address => uint256) public depositedNTokens;
-    mapping(address => uint256) public tokensInBucket;
-    mapping(address => uint256) public realisedTokens;
+    mapping(address => uint256) public depositedNTokens;//Staked nUSD
+    mapping(address => uint256) public tokensInBucket;//根據staked nUSD慢慢累積的值,會送到transmutable DAI,會在updateAccount更新,根據進來的時間分配不同
+    mapping(address => uint256) public realisedTokens;//transmutable DAI
     mapping(address => uint256) public lastDividendPoints;
 
     mapping(address => bool) public userIsKnown;
@@ -198,6 +198,7 @@ contract Transmuter is Context {
     {
         // requires approval of NToken first
         address sender = msg.sender;
+        amount = amount.mul(1000000000000);
         //require tokens transferred in;
         IERC20Burnable(NToken).safeTransferFrom(sender, address(this), amount);
         totalSupplyNtokens = totalSupplyNtokens.add(amount);

@@ -4,14 +4,14 @@ pragma solidity 0.6.12;
 import "hardhat/console.sol";
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20USD.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 
 import "../interfaces/IYearnController.sol";
 import "../interfaces/IYearnVaultUSD.sol";
 
-contract YearnVaultMockUSD is  ERC20 {
+contract YearnVaultMockUSD is  ERC20USD {
   using SafeERC20 for IDetailedERC20;
   using SafeMath for uint256;
 
@@ -21,7 +21,7 @@ contract YearnVaultMockUSD is  ERC20 {
   IYearnController public controller;
   IDetailedERC20 public token;
 
-  constructor(IDetailedERC20 _token, IYearnController _controller) public ERC20("yEarn Mock", "yMOCK") {
+  constructor(IDetailedERC20 _token, IYearnController _controller) public ERC20USD("yEarn Mock", "yMOCK") {
     token = _token;
     controller = _controller;
   }
